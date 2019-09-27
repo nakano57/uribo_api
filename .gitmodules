@@ -1,0 +1,3 @@
+[submodule "uribo_login"]
+	path = uribo_login
+	url = git@github.com:nakano57/uribo_login.git
