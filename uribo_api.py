@@ -61,6 +61,20 @@ class uribo_api(uribo.login):
         return res.text
 
 
+class Syllabus_container():
+    def __init__(self):
+        self.name = ''
+        self.classification = ''
+        self.code = ''
+        self.teacher = ''
+        self.form = ''
+        self.grade = []
+        self.quarter = 0
+        self.time = []
+        self.unit = 1
+        self.information = ''
+
+
 if __name__ == "__main__":
 
     uri = uribo_api(id=keys.userid, password=keys.passwd)
