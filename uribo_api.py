@@ -15,27 +15,21 @@ from selenium.webdriver.common.by import By
 class uribo_api(uribo.login):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.set_cookie_to_selenium()
 
-    def set_cookie_to_selenium(self):
+        self.set_cookie_to_driver()
+
+    def set_cookie_to_driver(self):
 
         self.driver = webdriver.Chrome()
-        # 一度なんか開いておかないとエラーが出る
         self.driver.get('https://example.com')
-
-        # uriからCookieをもらう。辞書型で帰ってくる
         cookie = self.cookies.get_dict()
 
-        # 渡す
         for cookie_value in cookie:
             self.driver.add_cookie({'name': cookie_value,
                                     'value': cookie[cookie_value],
                                     'domain': 'kobe-u.ac.jp'})
 
         return self.driver
-
-    def _get_json(self, code):
-        pass
 
     def get_syllabus(self, code):
         self.driver.get(
@@ -71,4 +65,5 @@ if __name__ == "__main__":
 
     uri = uribo_api(id=keys.userid, password=keys.passwd)
 
+    # もっとわかりやすい形にしたい
     uri.get_syllabus("4T305")
